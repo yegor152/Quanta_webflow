@@ -5,6 +5,7 @@ let chat = null;
 let problems = {};
 let user_id = null;
 let is_user_verified = false;
+console.log("sd");
 
 //run this code once, copy problem ids from console, insert them to code, and comment following lines of code afterwards
 /*
