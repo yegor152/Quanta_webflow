@@ -254,6 +254,7 @@ function sendFeedback(ev, liked){
     ev.target.classList.add("pressed")
     document.getElementById("thumb-up-btn").setAttribute("disabled", true)
     document.getElementById("thumb-down-btn").setAttribute("disabled", true)
+    chat.thnkFeedback.style.display = 'block';
     fetch(serverLink + 'submitFeedback', {
         method: 'POST',
         body: JSON.stringify({memberstack_user_id: user_id, submission_id: chat.responseID, liked_by_user: liked}),
