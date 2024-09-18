@@ -89,8 +89,8 @@ function openChat(ev){
         chatWindow = document.createElement("div");
         chatWindow.id = "chatWindow";
         chatWindow.innerHTML = `
-    <span class="close-chat-btn" onclick="closeWindow(event)">✖</span>
-              
+        <span class="close-chat-btn" onclick="closeWindow(event)">✖</span>
+
     <div id="inputDiv" class="chat-screen">
         <h6 id="submitHeader">Submit your solution to problem ${problems[id].number}:</h6>
         <textarea id="solution-input" onkeydown="handleKeydown(event)" placeholder="Submit your solution..."></textarea>
@@ -123,13 +123,13 @@ function openChat(ev){
         <div id="feedback-buttons">
             <button id="thumb-up-btn" onclick="sendFeedback(event, true)" class="btn">👍</button>
             <button id="thumb-down-btn" onclick="sendFeedback(event, false)" class="btn">👎</button>
+            <p id="thnk_feedback" style="display: none">Thank you for your feedback</p>
         </div>
     </div>
 
     <!-- Error Screen -->
     <div id="errorDiv" class="chat-screen">
         <p id="error-message"></p>
-        <button id="error-close-btn" onclick="closeWindow(event)" class="btn">Close</button>
     </div>
     `;
         document.body.appendChild(chatWindow);
@@ -146,6 +146,7 @@ function openChat(ev){
             GC: chatWindow.querySelector("#grade-correctness-value"),
             GQ: chatWindow.querySelector("#grade-quality-value"),
             FQ: chatWindow.querySelector("#feedback-quality-value"),
+            thnkFeedback: chatWindow.querySelector("#thnk_feedback"),
             problemID: id,
             status: "input"
         }
@@ -182,10 +183,13 @@ function showChatPage(pageID){
         screen.style.display = 'none';
     });
 
-    for(let id of ['thumb-up-btn', 'thumb-down-btn']){
-        let el = document.getElementById("thumb-up-btn")
-        el.classList.remove("pressed");
-        el.removeAttribute("disabled")
+    if(pageID == "inputDiv") {
+        chat.thnkFeedback.style.display = 'none'
+        for (let id of ['thumb-up-btn', 'thumb-down-btn']) {
+            let el = document.getElementById(id)
+            el.classList.remove("pressed");
+            el.removeAttribute("disabled")
+        }
     }
     chat.window.querySelector(`#${pageID}`).style.display = 'block';
 }
