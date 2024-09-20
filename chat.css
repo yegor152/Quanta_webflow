@@ -41,7 +41,7 @@
 .btn {
     width: 100%;
     padding: 10px;
-    background-color: #3898ec; /* Button background color */
+    background-color: #374b68; /* Button background color */
     color: white;
     border: none;
     border-radius: 5px;
@@ -49,17 +49,12 @@
 }
 
 .btn:hover {
-    background-color: #3184c9;
+    background-color: #4f688e;
 }
 
-/* Grades display on the same line */
-.grade-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-}
 
-/* Thumbs feedback buttons in a row */
+
+
 #feedback-buttons {
     display: flex;
     justify-content: space-between;
@@ -109,8 +104,8 @@ p {
 }
 
 .sbmt-button {
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
 }
 .sbmt-button:hover {
     cursor: pointer;
