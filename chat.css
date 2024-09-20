@@ -109,8 +109,12 @@ p {
 }
 
 .sbmt-button {
-    width: 80px;
-    height: 80px;
+    width: 40px;
+    height: 40px;
+}
+.sbmt-button:hover {
+    cursor: pointer;
+    border-color: #374b68;
 }
 
 #responseDiv {
