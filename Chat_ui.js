@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         let img_src = `https://cdn.prod.website-files.com/6568bfe66e016172daa08150/66ede06843f101bc518e0798_submit_icon.svg`
         container.innerHTML = `
                 <p class="edu-problem-name-and-num">Problem ${currentProblem}.</p>
-                <img src="${img_src}" class="sbmt-button" data-id="${problem.id}" onclick="openChat(event)">Submit Solution</img>
+                <img src="${img_src}" class="sbmt-button" data-id="${problem.id}" onclick="openChat(event)">
                 <p class="edu-p">${problem.problem_statement}</p>
                 `
         currentProblem ++
