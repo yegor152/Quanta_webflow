@@ -107,11 +107,7 @@ p {
     width: 25px;
     height: 25px;
 }
+
 .sbmt-button:hover {
     cursor: pointer;
-    border-color: #374b68;
-}
-
-#responseDiv {
-    margin-top: 30px;
 }
