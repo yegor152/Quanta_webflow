@@ -61,12 +61,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             statement: problem.problem_statement,
         };
         //TODO check problem number by div posision
+        let img_src = `https://cdn.prod.website-files.com/6568bfe66e016172daa08150/66ede06843f101bc518e0798_submit_icon.svg`
         container.innerHTML = `
                 <p class="edu-problem-name-and-num">Problem ${currentProblem}.</p>
-                <a class="submit-solution w-button" data-id="${problem.id}">Submit Solution</a>
+                <img src="${img_src}" class="sbmt-button" data-id="${problem.id}" onclick="openChat(event)">Submit Solution</img>
                 <p class="edu-p">${problem.problem_statement}</p>
                 `
-        container.querySelector(".submit-solution").addEventListener('click', openChat)
         currentProblem ++
         MathJax.typeset([container])
     }
@@ -104,21 +104,7 @@ function openChat(ev){
 
     <!-- Result Screen -->
     <div id="responseDIV" class="chat-screen">
-        <div class="grade-row">
-            <h4>Grade on Correctness:</h4>
-            <h4 id="grade-correctness-value"></h4>
-        </div>
-        <div id="feedback-correctness">
-            <h4>Feedback on Correctness:</h4>
-            <p id="feedback-correctness-value"></p>
-        </div>
-        <div class="grade-row">
-            <h4>Grade on Quality:</h4>
-            <h4 id="grade-quality-value"></h4>
-        </div>
-        <div id="feedback-quality">
-            <h4>Feedback on Quality:</h4>
-            <p id="feedback-quality-value"></p>
+        <div id="responseBody">
         </div>
         <div id="feedback-buttons">
             <button id="thumb-up-btn" onclick="sendFeedback(event, true)" class="btn">👍</button>
@@ -138,14 +124,11 @@ function openChat(ev){
             input: chatWindow.querySelector("#solution-input"),
             loadingDiv: chatWindow.querySelector("#loadingDiv"),
             responseDIV: chatWindow.querySelector("#responseDIV"),
+            responseBody: chatWindow.querySelector("#responseBody"),
             inputDiv: chatWindow.querySelector("#inputDiv"),
             submitHeader: chatWindow.querySelector("#submitHeader"),
             errorDiv: chatWindow.querySelector("#errorDiv"),
             errorP: chatWindow.querySelector("#error-message"),
-            FC: chatWindow.querySelector("#feedback-correctness-value"),
-            GC: chatWindow.querySelector("#grade-correctness-value"),
-            GQ: chatWindow.querySelector("#grade-quality-value"),
-            FQ: chatWindow.querySelector("#feedback-quality-value"),
             thnkFeedback: chatWindow.querySelector("#thnk_feedback"),
             problemID: id,
             status: "input"
@@ -154,7 +137,7 @@ function openChat(ev){
     }
     else{
         if(!is_user_verified){
-            showError("Only registered, and verfied users can send solutions. Login and verify your email to continue")
+            showError("Only registered, and verified users can send solutions. Login and verify your email to continue")
             return;
         }
         if(chat.status == "fetching") chat.controller.abort()
@@ -234,11 +217,18 @@ function sendSolution(ev){
         })
         .then(data => {
                 if(!data.response) return
+                let html = ``
+                for(let [key, value] of Object.entries(data.response)) {
+                    html += `
+                    <div>
+                        <h4>${key}:</h4>
+                        <hp>${value}</hp>
+                    </div>
+                    `
+                }
+                chat.responseBody.innerHTML = html;
+                MathJax.typeset([chat.responseDIV])
                 showChatPage("responseDIV");
-                chat.FQ.innerHTML = data.response["**Feedback on Quality**"];
-                chat.FC.innerHTML = data.response["**Feedback on Correctness**"];
-                chat.GQ.innerHTML = data.response["**Quality Grade**"];
-                chat.GC.innerHTML = data.response["**Correctness Grade**"];
                 chat.responseID = data.submission_id;
             }
         )

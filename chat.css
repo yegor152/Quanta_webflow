@@ -10,6 +10,8 @@
     flex-direction: column;
     padding: 10px;
     border-radius: 10px;
+    max-height: 700px;
+    overflow-y: auto;
 }
 
 .close-chat-btn {
@@ -104,6 +106,11 @@
 
 p {
     white-space: pre-wrap;
+}
+
+.sbmt-button {
+    width: 80px;
+    height: 80px;
 }
 
 #responseDiv {
