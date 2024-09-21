@@ -27,12 +27,12 @@ body {
 /* Adjust column widths */
 .submissions-table th:first-child,
 .submissions-table td:first-child {
-    width: 20%; /* Narrower Problem ID column */
+    width: 35%; /* Narrower Problem ID column */
 }
 
 .submissions-table th:nth-child(2),
 .submissions-table td:nth-child(2) {
-    width: 80%; /* Wider Submissions column */
+    width: 65%; /* Wider Submissions column */
 }
 
 .submissions-table th, .submissions-table td {
