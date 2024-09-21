@@ -1,5 +1,3 @@
-//insert problem ids here:
-let ids = ['Catan_Special_Number','Expected_Num_Boxes_with_Coupons','Flash_Tossing_Even_Num_Tails']
 const serverLink = 'https://api.quanta.world/';
 let chat = null;
 let problems = {};
