@@ -45,39 +45,38 @@ const dataPromise = fetch(serverLink + 'getProblems', {
 })
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const data = await dataPromise
-    if(!data) return
-    let currentProblem = 1
-    for(let i = 0; i < data.length; i++) {
-        const problem = data[i]
-        const container = document.querySelector(`[data-id="${problem.id}"]`);
-        if(!container) {
-            console.error(`Container with data-id ${problem.id} not found`);
-            continue
-        }
-
-        problems[problem.id] = {
-            number: currentProblem,
-            statement: problem.problem_statement,
-        };
-        //TODO check problem number by div posision
-        let img_src = `https://cdn.prod.website-files.com/6568bfe66e016172daa08150/66ede06843f101bc518e0798_submit_icon.svg`
-        container.innerHTML = `
-                <p class="edu-problem-name-and-num">Problem ${currentProblem}.</p>
-                <p class="edu-p">${problem.problem_statement}</p>
-                <img src="${img_src}" class="sbmt-button" data-id="${problem.id}" onclick="openChat(event)">
-                `
-        currentProblem ++
-        MathJax.startup.promise.then(() => {
-            console.log('MathJax is ready');
-            MathJax.typeset([container])
-        }).catch((err) => console.log('MathJax initialization failed:', err));
-    }
     window.$memberstackDom.getCurrentMember().then(response => {
         if(response){
             user_id = response.data.id
             is_user_verified = response.data.verified
         }
+    })
+
+    const data = await dataPromise
+    if(!data) return
+    let currentProblem = 1
+
+    document.querySelector('.insert-problem').forEach((el) =>{
+        let id = el.innerText.replace(/\s+/g, '');
+        if(!data[id]){
+            el.innerHTML = `Failed to load element with id ${id}`
+            return
+        }
+        problems[id] = {
+            number: currentProblem,
+            statement: data[id],
+        };
+
+        let img_src = `https://cdn.prod.website-files.com/6568bfe66e016172daa08150/66ede06843f101bc518e0798_submit_icon.svg`
+        el.innerHTML = `
+                <p class="edu-problem-name-and-num">Problem ${currentProblem}.</p>
+                <p class="edu-p">${data[id]}</p>
+                <img src="${img_src}" class="sbmt-button" data-id="${id}" onclick="openChat(event)">
+                `
+        currentProblem ++;
+        MathJax.startup.promise.then(() => {
+            MathJax.typeset([el])
+        }).catch((err) => console.log('MathJax initialization failed:', err));
     })
 })
 

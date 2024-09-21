@@ -1,9 +1,16 @@
+window.MathJax = {
+    tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        processEscapes: true
+    },
+};
 
 let serverLink = 'https://api.quanta.world/';
 let popup = null;
 let popupDiv = null;
 let submissions = {};
 let user_id = null;
+
 
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -150,4 +157,7 @@ function renderDetails(data){
         `
     }
     popupDiv.innerHTML = html
+    MathJax.startup.promise.then(() => {
+        MathJax.typeset([popupDiv])
+    }).catch((err) => console.log('MathJax initialization failed:', err));
 }
