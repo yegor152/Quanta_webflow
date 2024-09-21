@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(!data) return
     let currentProblem = 1
 
-    document.querySelector('.insert-problem').forEach((el) =>{
+    document.querySelectorAll('.insert-problem').forEach((el) =>{
         let id = el.innerText.replace(/\s+/g, '');
         if(!data[id]){
             el.innerHTML = `Failed to load element with id ${id}`
