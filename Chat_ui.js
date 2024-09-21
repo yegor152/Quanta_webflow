@@ -72,9 +72,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <img src="${img_src}" class="sbmt-button" data-id="${id}" onclick="openChat(event)">
                 `
         currentProblem ++;
-        MathJax.startup.promise.then(() => {
-            MathJax.typeset([el])
-        }).catch((err) => console.log('MathJax initialization failed:', err));
+        try {
+            MathJax.startup.promise.then(() => {
+                MathJax.typeset([el])
+            }).catch((err) => console.log('MathJax initialization failed:', err));
+        }catch(e){
+            console.error('MathJax initialization failed:', e);
+        }
     })
 })
 
