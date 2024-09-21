@@ -1,6 +1,5 @@
 const serverLink = 'https://api.quanta.world/';
 let chat = null;
-let problems = {};
 let user_id = null;
 let is_user_verified = false;
 
@@ -81,10 +80,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 function openChat(ev){
     let id = ev.target.getAttribute("data-id");
     let problemName = id.replace(/_/g, ' ');
-    if(!problems[id]){
-        console.error('Something went wrong');
-        return;
-    }
     if(!chat) {
         chatWindow = document.createElement("div");
         chatWindow.id = "chatWindow";
