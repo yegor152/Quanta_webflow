@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         return response.json();
     }).then(data =>{
-        let div  = document.querySelector("#tableDiv");
+        let div  = document.querySelector("#containerDiv");
         div.innerHTML = `
                 <table class="submissions-table">
                         <thead>

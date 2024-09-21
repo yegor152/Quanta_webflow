@@ -94,6 +94,8 @@ body {
     max-width: 90%;
     text-align: left;
     position: relative;
+    max-height: 80%;
+    overflow-y: auto;
 }
 
 .popup-content h4,
