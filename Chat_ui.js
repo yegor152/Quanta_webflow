@@ -68,7 +68,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <img src="${img_src}" class="sbmt-button" data-id="${problem.id}" onclick="openChat(event)">
                 `
         currentProblem ++
-        MathJax.typeset([container])
+        MathJax.startup.promise.then(() => {
+            console.log('MathJax is ready');
+            MathJax.typeset([container])
+        }).catch((err) => console.log('MathJax initialization failed:', err));
     }
     window.$memberstackDom.getCurrentMember().then(response => {
         if(response){

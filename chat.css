@@ -53,8 +53,6 @@
 }
 
 
-
-
 #feedback-buttons {
     display: flex;
     justify-content: space-between;
@@ -106,8 +104,10 @@ p {
 .sbmt-button {
     width: 15px;
     height: 15px;
+    transition: transform 0.3s ease;
 }
 
 .sbmt-button:hover {
     cursor: pointer;
+    transform: scale(1.3);
 }
