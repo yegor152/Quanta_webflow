@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!response) {
         //TODO
-        document.querySelector('#container').innerHTML =   `
+        document.querySelector('#containerDiv').innerHTML =   `
         No user found:(
         `
         return
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         return response.json();
     }).then(data =>{
-        let div  = document.querySelector("#container");
+        let div  = document.querySelector("#tableDiv");
         div.innerHTML = `
                 <table class="submissions-table">
                         <thead>
@@ -66,9 +66,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             for(let result of results) {
                 row_html += `<a onclick="showSubmission(event)" data-id="${result.id}">${result.overall_grade}</a>`
             }
+            let problemName = id.replace(/_/g, ' ');
             body_html += `
                         <tr>
-                            <td>${id}</td>
+                            <td>${problemName}</td>
                             <td>
                                 <div class="grades-list">
                                     ${row_html}
@@ -157,7 +158,10 @@ function renderDetails(data){
         `
     }
     popupDiv.innerHTML = html
-    MathJax.startup.promise.then(() => {
-        MathJax.typeset([popupDiv])
-    }).catch((err) => console.log('MathJax initialization failed:', err));
+    try {
+        MathJax.typeset([popupDiv]);
+    }
+    catch (e){
+        console.error(e);
+    }
 }

@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const data = await dataPromise
     if(!data) return
-    let currentProblem = 1
 
     document.querySelectorAll('.insert-problem').forEach((el) =>{
         let id = el.innerText.replace(/\s+/g, '');
@@ -60,18 +59,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             el.innerHTML = `Failed to load element with id ${id}`
             return
         }
-        problems[id] = {
-            number: currentProblem,
-            statement: data[id],
-        };
 
+        let problemName =  id.replace(/_/g, ' ');
         let img_src = `https://cdn.prod.website-files.com/6568bfe66e016172daa08150/66ede06843f101bc518e0798_submit_icon.svg`
         el.innerHTML = `
-                <p class="edu-problem-name-and-num">Problem ${currentProblem}.</p>
+                <p class="edu-problem-name-and-num">${problemName}</p>
                 <p class="edu-p">${data[id]}</p>
                 <img src="${img_src}" class="sbmt-button" data-id="${id}" onclick="openChat(event)">
                 `
-        currentProblem ++;
         try {
             MathJax.startup.promise.then(() => {
                 MathJax.typeset([el])
@@ -85,6 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function openChat(ev){
     let id = ev.target.getAttribute("data-id");
+    let problemName = id.replace(/_/g, ' ');
     if(!problems[id]){
         console.error('Something went wrong');
         return;
@@ -96,7 +92,7 @@ function openChat(ev){
         <span class="close-chat-btn" onclick="closeWindow(event)">✖</span>
 
     <div id="inputDiv" class="chat-screen">
-        <h6 id="submitHeader">Submit your solution to problem ${problems[id].number}:</h6>
+        <h6 id="submitHeader">Submit your solution to ${problemName}:</h6>
         <textarea id="solution-input" onkeydown="handleKeydown(event)" placeholder="Submit your solution..."></textarea>
         <button id="submit-btn" class="btn" onclick="sendSolution(event)">Send</button>
     </div>
@@ -145,7 +141,7 @@ function openChat(ev){
             return;
         }
         if(chat.status == "fetching") chat.controller.abort()
-        chat.submitHeader.innerHTML = `Submit your solution to problem ${problems[id].number}:`;
+        chat.submitHeader.innerHTML = `Submit your solution to ${problemName}:`;
         showChatPage("inputDiv");
         chat.problemID = id;
         chat.status = "input";
@@ -231,9 +227,13 @@ function sendSolution(ev){
                     `
                 }
                 chat.responseBody.innerHTML = html;
-                MathJax.typeset([chat.responseDIV])
                 showChatPage("responseDIV");
                 chat.responseID = data.submission_id;
+                try{
+                    MathJax.typeset([chat.responseDIV]);
+                }catch(e){
+                    console.error(e);
+                }
             }
         )
         .catch(error => {

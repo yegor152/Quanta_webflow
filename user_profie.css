@@ -9,10 +9,9 @@ body {
     background-color: #f4f4f4;
 }
 
-.container {
+.containerDiv {
     margin: 50px auto;
-    width: 90%;
-    max-width: 800px; /* Fixed maximum width */
+    width: 100%;
     overflow-x: auto; /* Horizontal scroll for entire table */
 }
 
@@ -27,12 +26,12 @@ body {
 /* Adjust column widths */
 .submissions-table th:first-child,
 .submissions-table td:first-child {
-    width: 35%; /* Narrower Problem ID column */
+    width: 40%; /* Narrower Problem ID column */
 }
 
 .submissions-table th:nth-child(2),
 .submissions-table td:nth-child(2) {
-    width: 65%; /* Wider Submissions column */
+    width: 60%; /* Wider Submissions column */
 }
 
 .submissions-table th, .submissions-table td {
@@ -91,7 +90,7 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    width: 500px;
+    width: 900px;
     max-width: 90%;
     text-align: left;
     position: relative;
