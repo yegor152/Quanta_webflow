@@ -216,8 +216,8 @@ function sendSolution(ev){
                 for(let [key, value] of Object.entries(data.response)) {
                     html += `
                     <div>
-                        <h4>${key}:</h4>
-                        <hp>${value}</hp>
+                        <h3 class="response-field">${key}:</h3>
+                        <p class="response-field">${value}</p>
                     </div>
                     `
                 }

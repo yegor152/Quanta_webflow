@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!response) {
         //TODO
-        document.querySelector('#containerDiv').innerHTML =   `
+        document.querySelector('#delta_user_results').innerHTML =   `
         No user found:(
         `
         return
@@ -146,14 +146,14 @@ function renderDetails(data){
         return
     }
     let html = `<div>
-            <h4>Your input:</h4>
-            <p>${data.user_input}</p>
+            <h3 class="response-field">Your input:</h3>
+            <p class="response-field">${data.user_input}</p>
         </div>`
     for(let [key, value] of Object.entries(data.all_response)) {
         html += `
         <div>
-            <h4>${key}</h4>
-            <p>${value}</p>
+            <h3 class="response-field">${key}</h3>
+            <p class="response-field">${value}</p>
         </div>
         `
     }

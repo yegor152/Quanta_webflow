@@ -9,7 +9,7 @@ body {
     background-color: #f4f4f4;
 }
 
-.containerDiv {
+.delta_user_results {
     margin: 50px auto;
     width: 100%;
     overflow-x: auto; /* Horizontal scroll for entire table */
@@ -119,4 +119,9 @@ body {
 
 p {
     white-space: pre-wrap;
+}
+
+.response-field {
+    margin-bottom: 0;
+    margin-top: 0;
 }
