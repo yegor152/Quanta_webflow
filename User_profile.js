@@ -17,10 +17,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     let response = await window.$memberstackDom.getCurrentMember()
 
     if (!response) {
-        //TODO
-        document.querySelector('#delta_user_results').innerHTML =   `
-        No user found:(
-        `
         return
     }
     user_id = response.data.id
@@ -45,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         return response.json();
     }).then(data =>{
-        let div  = document.querySelector("#containerDiv");
+        let div  = document.querySelector("#delta_user_results");
         div.innerHTML = `
                 <table class="submissions-table">
                         <thead>
