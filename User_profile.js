@@ -148,7 +148,7 @@ function renderDetails(data){
     for(let [key, value] of Object.entries(data.all_response)) {
         html += `
         <div>
-            <h3 class="response-field">${key}</h3>
+            <h3 class="response-field">${key}:</h3>
             <p class="response-field">${value}</p>
         </div>
         `
