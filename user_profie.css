@@ -9,7 +9,7 @@ body {
     background-color: #f4f4f4;
 }
 
-.delta_user_results {
+#delta_user_results {
     margin: 50px auto;
     width: 100%;
     overflow-x: auto; /* Horizontal scroll for entire table */
