@@ -1,4 +1,4 @@
-const serverLink = 'https://api.quanta.world/';
+const serverLink = 'https://quanta-server.fly.dev/';
 let chat = null;
 let user_id = null;
 let is_user_verified = false;
