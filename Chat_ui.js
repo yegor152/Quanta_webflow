@@ -1,4 +1,4 @@
-const serverLink = 'https://quanta-server.fly.dev/';
+const serverLink = 'http://http://localhost:3000/';
 let chat = null;
 let user_id = null;
 let is_user_verified = false;
