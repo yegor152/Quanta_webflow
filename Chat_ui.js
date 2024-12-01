@@ -1,4 +1,4 @@
-const serverLink = 'http://http://localhost:3000/';
+const serverLink = 'https://api.quanta.world/';
 let chat = null;
 let user_id = null;
 let is_user_verified = false;
